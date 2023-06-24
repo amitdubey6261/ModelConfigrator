@@ -12,7 +12,7 @@ class World {
         this.scene = this.experience.scene ; 
         this.resources = this.experience.resources ;
         console.log( this.resources)
-        this.scene.add( this.resources.items.kira.scene ) 
+        this.scene.add( this.resources.items.michelle.scene ) 
     }
 
 }
