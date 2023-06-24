@@ -2,6 +2,7 @@ import * as THREE from 'three' ;
 import Experience from './Experience';
 import Sizes from './Utils/Sizes';
 import Camera from './Camera';
+import { ARButton } from 'three/examples/jsm/webxr/ARButton.js' ; 
 
 export default class Renderer{
     experience : Experience ; 
@@ -19,6 +20,7 @@ export default class Renderer{
         this.camera = this.experience.camera ; 
 
         this.setRenderer() ; 
+        this.setArButton() ;  
     }
 
     setRenderer(){
@@ -28,7 +30,7 @@ export default class Renderer{
             alpha : true , 
         }) ; 
 
-
+        this.renderer.xr.enabled = true ; 
         this.renderer.shadowMap.enabled = true ;
         this.renderer.shadowMap.type = THREE.PCFShadowMap ;
         this.renderer.outputEncoding = THREE.sRGBEncoding ;
@@ -36,6 +38,11 @@ export default class Renderer{
         this.renderer.toneMappingExposure = 1.75 ;
         this.renderer.setSize(this.sizes.width , this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
+    }
+    
+    setArButton(){
+        const ArButton = ARButton.createButton(this.renderer) ; 
+        document.body.appendChild(ArButton) ; 
     }
 
     resize(){
